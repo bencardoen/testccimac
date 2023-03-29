@@ -14,17 +14,17 @@ jobs: # a basic unit of work in a run
           wget https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.5-mac64.tar.gz
           tar -xvzf julia-1.8.5-mac64.tar.gz
           cd  julia-1.8.5/bin
-          export PATH="$PATH:`pwd`"
-          export PYTHON=""
-          julia -e 'using Pkg; Pkg.add("RCall"); Pkg.add("PyCall"); Pkg.add("Conda");'
-          julia -e 'using Conda; Conda.pip_interop(true)'
-          julia -e 'using Conda; Conda.pip("install", "smlmvis")'
-          julia -e 'using Conda; Conda.pip("install", "meshio")'
-          julia -e 'using PyCall; pyimport("smlmvis")'
-          julia -e 'using Pkg; '
-          julia -e 'using Pkg; Pkg.add(url="https://github.com/bencardoen/SlurmMonitor.jl.git"); Pkg.add(url="https://github.com/bencardoen/SmlmTools.jl.git");'
-          julia -e 'using Pkg; Pkg.add(url="https://github.com/bencardoen/DataCurator.jl.git");' 
-          julia -e 'using Pkg; Pkg.build("DataCurator"); Pkg.test("DataCurator");'
+         # export PATH="$PATH:`pwd`"
+          #export PYTHON=""
+          #julia -e 'using Pkg; Pkg.add("RCall"); Pkg.add("PyCall"); Pkg.add("Conda");'
+          #julia -e 'using Conda; Conda.pip_interop(true)'
+          #julia -e 'using Conda; Conda.pip("install", "smlmvis")'
+          #julia -e 'using Conda; Conda.pip("install", "meshio")'
+          #julia -e 'using PyCall; pyimport("smlmvis")'
+          #julia -e 'using Pkg; '
+          #julia -e 'using Pkg; Pkg.add(url="https://github.com/bencardoen/SlurmMonitor.jl.git"); Pkg.add(url="https://github.com/bencardoen/SmlmTools.jl.git");'
+          #julia -e 'using Pkg; Pkg.add(url="https://github.com/bencardoen/DataCurator.jl.git");' 
+          #julia -e 'using Pkg; Pkg.build("DataCurator"); Pkg.test("DataCurator");'
          
 
   build: 
