@@ -6,8 +6,27 @@ jobs: # a basic unit of work in a run
       xcode: 14.2.0 # indicate your selected version of Xcode
     steps: # a series of commands to run
       - checkout  # pull down code from your version control system.
-      - run:
-          command: echo "Hi"
+    
+      - run: |
+          wget https://cran.r-project.org/bin/macosx/base/R-4.2.3.pkg
+          sudo installer -pkg R-4.2.3.pkg -target /
+          export R_HOME=`R RHOME`
+          wget https://julialang-s3.julialang.org/bin/mac/x64/1.8/julia-1.8.5-mac64.tar.gz
+          tar xv julia-1.8.5-mac64.tar.gz
+          cd  julia-1.8.5/bin
+          export PATH="$PATH:`pwd`"
+          julia -e 'using Pkg; Pkg.update()'
+          export PYTHON=""
+          julia -e 'using Pkg; Pkg.add("RCall"); Pkg.build("RCall")'
+          julia -e 'using Pkg; Pkg.add("PyCall"); Pkg.build("PyCall")'
+          julia -e 'using Pkg; Pkg.add("Conda")'
+          julia -e 'using Conda; Conda.update()'
+          julia -e 'using Conda; Conda.pip_interop(true)'
+          julia -e 'using Conda; Conda.pip("install", "smlmvis")'
+          julia -e 'using Conda; Conda.pip("install", "meshio")'
+          julia -e 'using PyCall; pyimport("smlmvis")'
+          
+          
 
   build: 
     macos:
