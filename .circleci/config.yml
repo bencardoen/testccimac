@@ -1,24 +1,29 @@
 version: 2.1
-orbs:
-  codecov: codecov/codecov@3.0.0
-jobs:
-  build:
-    working_directory: /root/project/DataCurator.jl   # Clone into a directory whose name matches your Package.
-    docker:
-      - image: julia:1.8
-    steps:
-      - run: pwd
-      - run: ls -alsht
-      - run: apt update
-      - run: apt install python3 -y
-      - run: apt install python3-pip -y
-      - run: pip3 install smlmvis
-      - run: pip3 install meshio
+
+jobs: # a basic unit of work in a run
+  test: # your job name
+    macos:
+      xcode: 14.2.0 # indicate your selected version of Xcode
+    steps: # a series of commands to run
+      - checkout  # pull down code from your version control system.
       - run:
-          no_output_timeout: 45m
-          command: julia -e 'using Pkg; Pkg.add("Coverage"); Pkg.add(url="https://github.com/bencardoen/SlurmMonitor.jl.git"); Pkg.add(url="https://github.com/bencardoen/SmlmTools.jl.git"); Pkg.add(url="https://github.com/bencardoen/DataCurator.jl.git"); Pkg.build("DataCurator"); Pkg.test("DataCurator", coverage=true);'
-          environment:
-            R_HOME : "*"
-            PYTHON : "/usr/bin/python3"
+          command: echo "Hi"
+
+  build: 
+    macos:
+      xcode: 14.2.0 # indicate your selected version of Xcode
+    steps: 
+      - checkout
       - run:
-          command: julia -e 'using Pkg; cd(Pkg.dir("DataCurator")); using Coverage; Codecov.submit(Codecov.process_folder())'
+          # build our application
+          name: Build Application
+          command: echo "Hi"
+
+          
+workflows:
+  test_build:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
