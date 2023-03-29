@@ -27,21 +27,6 @@ jobs: # a basic unit of work in a run
           julia -e 'using Pkg; Pkg.build("DataCurator"); Pkg.test("DataCurator");'
          
 
-  buildmac:
-    macos:
-      xcode: 14.2.0
-
-    steps:
-      # Commands will execute in macOS container
-      # with Xcode 14.2.0 installed
-      - run: xcodebuild -version
-Symbols
-Symbol outline not available for this file
-To inspect a symbol, try clicking on the symbol directly in the code view.
-Code navigation supports a limited number of languages. See which languages are supported.
-          
-          
-
   build: 
     macos:
       xcode: 14.2.0 # indicate your selected version of Xcode
