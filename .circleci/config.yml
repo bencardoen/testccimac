@@ -24,7 +24,7 @@ jobs: # a basic unit of work in a run
           julia --project=. -e 'using Conda; Conda.pip("install", "smlmvis")'
           julia --project=. -e 'using Conda; Conda.pip("install", "meshio")'
           julia --project=. -e 'using PyCall; pyimport("smlmvis")'
-          #julia -e 'using Pkg; Pkg.add(url="https://github.com/bencardoen/SlurmMonitor.jl.git"); Pkg.add(url="https://github.com/bencardoen/SmlmTools.jl.git");'
+          julia -e 'using Pkg; Pkg.add(url="https://github.com/bencardoen/SlurmMonitor.jl.git"); Pkg.add(url="https://github.com/bencardoen/SmlmTools.jl.git");'
           #julia -e 'using Pkg; Pkg.add(url="https://github.com/bencardoen/DataCurator.jl.git");' 
           #julia -e 'using Pkg; Pkg.build("DataCurator"); Pkg.test("DataCurator");'
          
