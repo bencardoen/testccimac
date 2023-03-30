@@ -35,16 +35,38 @@ jobs: # a basic unit of work in a run
           # Run tests
           julia --project=. -e 'using Pkg; Pkg.test("DataCurator");'
          
-
   build: 
-    macos:
-      xcode: 14.2.0 # indicate your selected version of Xcode
+    working_directory: /root/project/DataCurator.jl   # Clone into a directory whose name matches your Package.
+    docker:
+      - image: julia:1.8
     steps: 
       - checkout
-      - run:
-          # build our application
-          name: Build Application
-          command: echo "Hi"
+      - run: pwd
+      - run: ls -alsht
+      - run: apt update
+      - run: apt install python3 -y
+  
+# build:
+#     working_directory: /root/project/DataCurator.jl   # Clone into a directory whose name matches your Package.
+#     docker:
+#       - image: julia:1.8
+#     steps:
+#       - run: pwd
+#       - run: ls -alsht
+#       - run: apt update
+#       - run: apt install python3 -y
+#       - run: apt install python3-pip -y
+#       - run: pip3 install smlmvis
+#       - run: pip3 install meshio
+# #   build: 
+#     macos:
+#       xcode: 14.2.0 # indicate your selected version of Xcode
+#     steps: 
+#       - checkout
+#       - run:
+#          # build our application
+#          name: Build Application
+#          command: echo "Hi"
 
           
 workflows:
