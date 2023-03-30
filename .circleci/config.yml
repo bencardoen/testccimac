@@ -19,7 +19,7 @@ jobs: # a basic unit of work in a run
           cd
           mkdir test
           cd test
-          julia --project=. -e 'using Pkg; Pkg.add("Conda"); Pkg.add("PyCall"); Pkg.add("RCall");
+          julia --project=. -e 'using Pkg; Pkg.add("Conda"); Pkg.add("PyCall"); Pkg.add("RCall");'
           julia --project=. -e 'using Conda; Conda.update(); Conda.pip_interop(true)'
           julia --project=. -e 'using Conda; Conda.pip("install", "smlmvis")'
           julia --project=. -e 'using Conda; Conda.pip("install", "meshio")'
