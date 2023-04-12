@@ -56,8 +56,8 @@ jobs: # a basic unit of work in a run
       - run: export R_HOME=`R RHOME`
       - run: echo $R_HOME
       - run: export JULIA_TGZ=julia-$JLV-linux-x86_64.tar.gz
-      - run: wget https://julialang-s3.julialang.org/bin/linux/x64/$JLMJV/$JULIA_TGZ && tar -xf $JULIA_TGZ && rm $JULIA_TGZ
-      - run: export PATH=/opt/julia/julia-$JLV/bin:$PATH
+      - run: wget https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.5-linux-x86_64.tar.gz && tar -xf julia-1.8.5-linux-x86_64.tar.gz && rm julia-1.8.5-linux-x86_64.tar.gz
+      - run: export PATH=/opt/julia/julia-1.8.5/bin:$PATH
       - run: export JULIA_DEPOT_PATH=/opt/juliadepot
       - run: mkdir -p $JULIA_DEPOT_PATH
 #       git clone git@github.com:bencardoen/$PROJECT.git
